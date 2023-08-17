@@ -1,48 +1,38 @@
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class JAVA {
-  JAVA() {
-    System.out.printf("이게 생성자 메서드인가?");
-  }
-  void login() {
-    Scanner scan = new Scanner(System.in);
-
-    System.out.printf("##아이디를 입력하세요");
-    String uname = scan.next();
-
-    System.out.printf("#input the password");
-    String pwd = scan.next();
-
-    if(uname.equals("hong") && pwd.equals("1234")) {
-      System.out.println("check -> login success");
-    }
-    else {
-      System.out.println("id, password fail");
-    }
-  }
-
-  void check() {
-    int cnt = 10;
-    String msg = cnt > 0? "새로운 쪽지가 있다" : "새로운 쪽지가 없다";
-    System.out.println(msg);
-  }
-
-  String signin(String uname) {
-    
-  }
   public static void main(String[] args) {
-    JAVA java = new JAVA();
-    while(true) {
-      System.out.printf("메뉴를 선택하세요 (1:로그인, 2:쪽지확인, x:종료) ==>");
-      Scanner scan = new Scanner(System.in);
-      String sel = scan.next();
+    System.out.println("# 1. declare and initialize an array");
+    int[] scores = {90, 91, 100, 93, 82};
+    scores[2] = 10;
 
-      switch(sel) {
-        case "1": java.login(); break;
-        case "2": java.check(); break;
-        case "3": System.exit(0);
-        default: System.out.println("wrong input");
-      }
+    System.out.println(scores);
+    for(int i=0; i < scores.length; i++) {
+      System.out.println(scores[i]);
     }
-  } 
+    
+    System.out.println("\n2. Arrays method: toString(), asList()");
+    String[] cars = {"hyundai", "bmw", "benx", "toyota"};
+    List<String> car_list = Arrays.asList(cars);
+    System.out.println(car_list);
+    System.out.println(car_list.get(1)); 
+    
+    System.out.println("\n3. arrays method: sort(array, comparator), sort(array, int fromindex, int toindex)");
+    Arrays.sort(cars);
+    System.out.println(Arrays.asList(cars));
+
+    Arrays.sort(cars, Collections.reverseOrder());
+    System.out.println(Arrays.asList(cars));
+    Arrays.sort(cars, 0, 3);
+    System.out.println(Arrays.asList(cars)); 
+
+    System.out.println("#\n4. Arrays method: copyOf, copyOfRange");
+    String[] cars_copylist = Arrays.copyOf(cars, 3);
+    String[] cars_copylist2 = Arrays.copyOfRange(cars, 0, 2);
+    System.out.println(Arrays.asList(cars_copylist2));
+    System.out.println(Arrays.asList(cars_copylist));
+
+    }
 }
