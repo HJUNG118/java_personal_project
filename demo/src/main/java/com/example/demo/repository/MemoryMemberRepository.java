@@ -2,13 +2,15 @@ package com.example.demo.repository;
 
 import com.example.demo.domain.Member;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.HashMap;
 
 public class MemoryMemberRepository implements MemberRepository{
 
-    private static Map<Long, Member> store = new HashMap<>();
+    private static Map<Long, Member> store = new HashMap<>(); //원래는 db가 된다.
     private static long sequence = 0L;
     @Override
     public Member save(Member member) {
@@ -24,12 +26,13 @@ public class MemoryMemberRepository implements MemberRepository{
 
     @Override
     public Optional<Member> findByName(String name) {
-        store.values().stream()
-                .filter(member -> member.getName().equals(name));
+        return store.values().stream()
+                .filter(member -> member.getName().equals(name))
+                .findAny();
     }
 
     @Override
     public List<Member> findAll() {
-        return null;
+        return new ArrayList<>(store.values());
     }
 }
